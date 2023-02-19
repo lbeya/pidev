@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="375.0" prefWidth="506.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dealtroc.FXMLDocumentController">
+    <children>
+        <Button fx:id="button" layoutX="22.0" layoutY="14.0" onAction="#handleButtonAction" text="Click Me!" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TextField fx:id="texte" layoutX="126.0" layoutY="256.0" />
+      <Button layoutX="16.0" layoutY="256.0" mnemonicParsing="false" onAction="#Ajouter_commentaire" text="commenter" />
+      <Button layoutX="283.0" layoutY="231.0" mnemonicParsing="false" onAction="#Supprimer_commentaire" prefHeight="1.0" prefWidth="77.0" text="supprimer" />
+      <Button layoutX="18.0" layoutY="315.0" mnemonicParsing="false" onAction="#Consulter_commentaires" text="Affichier tous les commentaires" />
+      <Button layoutX="291.0" layoutY="269.0" mnemonicParsing="false" onAction="#Modifier_commentaire" text="Modifier" />
+      <TableView fx:id="tablecommentaire" layoutX="170.0" layoutY="7.0" prefHeight="200.0" prefWidth="303.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="commentaire" prefWidth="75.0" text="commentaire" />
+            <TableColumn fx:id="iduser" prefWidth="75.0" text="id-user" />
+            <TableColumn fx:id="date" prefWidth="75.0" text="date" />
+        </columns>
+      </TableView>
+      <Button layoutX="31.0" layoutY="95.0" mnemonicParsing="false" onAction="#view_commentaires" text="view commentaire" />
+    </children>
+</AnchorPane>
