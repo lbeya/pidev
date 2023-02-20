@@ -70,13 +70,14 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     } 
         @FXML
     void Ajouter_commentaire(ActionEvent event) throws SQLException {
         System.out.println(texte.getText());
         
        // c=new commentaire();
-        c = new commentaire(0, texte.getText(), 1, LocalDateTime.now());
+        c = new commentaire(0, texte.getText(),1, LocalDateTime.now());
 //        c.setCommentaire(texte.getText());
 //        c.setId(1);
 //        c.setDate(LocalDateTime.now());
@@ -173,11 +174,12 @@ data.add(new commentaire(rs.getInt(1),rs.getNString(2),rs.getInt(3),rs.getTimest
                  }
     id.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id") );
     commentaire.setCellValueFactory(new PropertyValueFactory<commentaire,String>("commentaire") );
-    iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("iduser") );
-    date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("date") );
+    iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id_utilisateur") );
+    date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("Date") );
+    tablecommentaire.setItems(data);
 
 }
    
-   }
+   } 
 
 
