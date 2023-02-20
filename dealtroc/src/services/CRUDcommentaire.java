@@ -22,9 +22,19 @@ import utils.MyConnection;
 public class CRUDcommentaire implements InterfaceCommentaire {
     Statement ste;
 Connection conn = MyConnection.getInstance().getConnection();
+
+public static boolean estUneChaineSansChiffres(String chaine) {
+    // Expression régulière pour vérifier si la chaîne ne contient que des lettres et/ou des espaces
+    String regex = "^[a-zA-Z\\s]+$";
+
+    // Vérifier si la chaîne correspond à l'expression régulière
+    return chaine.matches(regex);
+}
     @Override
+    
     public void Ajouter_commentaire(commentaire c) {
-            try {
+        if (estUneChaineSansChiffres(c.getCommentaire())){
+        try {
         ste = conn.createStatement();
         
         String datePublicationString = c.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -37,10 +47,12 @@ Connection conn = MyConnection.getInstance().getConnection();
 //            System.out.println("Commentaire non ajouté!!!!");  
         System.out.println(ex.getMessage());
     }
-              }
+              } else System.out.println("format invalide");
+    }
 
     @Override
     public void Modifier_commentaire(commentaire c) {
+            if (estUneChaineSansChiffres(c.getCommentaire())){
    try {
         Statement st = conn.createStatement();
         String req = "UPDATE `commentaire` SET `commentaire` = '" + c.getCommentaire() + "', `id_utilisateur` = '" + c.getId_utilisateur() + "', `Date` = '" + c.getDate() + "' WHERE `Commentaire`.`id` = " +c.getId();
@@ -51,8 +63,8 @@ Connection conn = MyConnection.getInstance().getConnection();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-
+    }else{System.out.println("format invalise");
+            }}
     @Override
     public void Supprimer_commentaire(int id) {
         try {
