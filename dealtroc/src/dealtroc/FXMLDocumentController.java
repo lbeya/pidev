@@ -81,17 +81,7 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        tablecommentaire.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-//    if (newSelection != null) {
-//        // une ligne a été sélectionnée, on la supprime
-//        tablecommentaire.getItems().remove(newSelection);
-//    }
-////});
-//        id.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id"));
-//    commentaire.setCellValueFactory(new PropertyValueFactory<commentaire,String>("commentaire") );
-//    iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id_utilisateur") );
-//    date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("Date") );
-       
+   
              
     } 
         @FXML
@@ -99,7 +89,7 @@ public class FXMLDocumentController implements Initializable {
         System.out.println(texte.getText());
         if (estUneChaineSansChiffres(texte.getText())==false){
             labelvalide.setText("");
-            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >8");
+            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >=8");
        
         }else{
             labelvalide.setText("valide format");
@@ -113,25 +103,25 @@ public class FXMLDocumentController implements Initializable {
         CRUDcommentaire cc = new CRUDcommentaire();
         cc.Ajouter_commentaire(c);
         ////////////////////////////// récuperer id from base 
-try{
-    Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery("SELECT id FROM commentaire WHERE commentaire ='"+texte.getText()+"'");
-if (rs.next()) {
-    cid = rs.getInt("id");
-    System.out.println(cid);
-    
-    c.setId(cid);
-    System.out.println("id du commentaire est devenu="+c.getId());
-
-}
-}catch(SQLException ex) {
-         System.out.println(ex);
-                 }
+//try{
+//    Statement stmt = conn.createStatement();
+//ResultSet rs = stmt.executeQuery("SELECT id FROM commentaire WHERE commentaire ='"+texte.getText()+"'");
+//if (rs.next()) {
+//    cid = rs.getInt("id");
+//    System.out.println(cid);
+//    
+//    //c.setId(cid);
+//    System.out.println("id du commentaire est devenu="+c.getId());
+//
+//}
+//}catch(SQLException ex) {
+//         System.out.println(ex);
+//                 }
 
 
          
     }
-    
+    ////supprimer en ecrivant le chaine de caractére
 //    @FXML
 //    void Supprimer_commentaire(ActionEvent event) {
 //
@@ -160,28 +150,9 @@ if (rs.next()) {
         @FXML
     void Supprimer_commentaire(ActionEvent event) {
          labelerror.setText("");
-        //labelvalide.setText("");
 selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
-            System.out.println(selectedCommentaire.getId());
-        
-//
-//        try{
-//    Statement stmt = conn.createStatement();
-//ResultSet rs = stmt.executeQuery("SELECT id FROM commentaire WHERE commentaire ='"+selectedCommentaire.getCommentaire()+"'");
-//if (rs.next()) {
-//    cid = rs.getInt("id");
-//    System.out.println(cid);
-//    
-//c.setId(cid);
-//    System.out.println("id du commentaire est devenu="+c.getId());
-//
-//}
-//}catch(SQLException ex) {
-//         System.out.println(ex);
-//                 }
-//        
+            System.out.println(selectedCommentaire.getId());      
         CRUDcommentaire cc = new CRUDcommentaire();
-        //cc.Supprimer_commentaire(c.getId());
         cc.Supprimer_commentaire(selectedCommentaire.getId());
         labelvalide.setText(selectedCommentaire.getCommentaire()+" a été supprimé");
 

@@ -37,7 +37,7 @@ public static boolean estUneChaineSansChiffres(String chaine) {
             if (Character.isDigit(chaine.charAt(i))){
                 s++;
         }
-    }System.out.println(s);
+    }
     if (s<8){
         nbr=true;
     }else{
