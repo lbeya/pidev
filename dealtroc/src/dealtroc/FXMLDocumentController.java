@@ -47,6 +47,11 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private TextField texte;
+    
+    
+    @FXML
+    private TextField textM;
+
 
     @FXML
     private TableView<commentaire> tablecommentaire;
@@ -81,11 +86,11 @@ public class FXMLDocumentController implements Initializable {
 //        // une ligne a été sélectionnée, on la supprime
 //        tablecommentaire.getItems().remove(newSelection);
 //    }
-//});
-        id.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id"));
-    commentaire.setCellValueFactory(new PropertyValueFactory<commentaire,String>("commentaire") );
-    iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id_utilisateur") );
-    date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("Date") );
+////});
+//        id.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id"));
+//    commentaire.setCellValueFactory(new PropertyValueFactory<commentaire,String>("commentaire") );
+//    iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id_utilisateur") );
+//    date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("Date") );
        
              
     } 
@@ -93,8 +98,8 @@ public class FXMLDocumentController implements Initializable {
     void Ajouter_commentaire(ActionEvent event) throws SQLException {
         System.out.println(texte.getText());
         if (estUneChaineSansChiffres(texte.getText())==false){
-            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres");
             labelvalide.setText("");
+            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >8");
        
         }else{
             labelvalide.setText("valide format");
@@ -197,8 +202,8 @@ selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
     
         @FXML
         void Modifier_commentaire(ActionEvent event) {
-              if (estUneChaineSansChiffres(texte.getText())==false){
-            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres");
+              if (estUneChaineSansChiffres(textM.getText())==false){
+            labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >8");
             labelvalide.setText("");
        
         }else{
@@ -207,12 +212,12 @@ selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
         } 
         selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
 
-        commentaire c1 = new commentaire(selectedCommentaire.getId(), texte.getText(), 1, LocalDateTime.now());
+        commentaire c1 = new commentaire(selectedCommentaire.getId(), textM.getText(), 1, LocalDateTime.now());
         c1.toString();
         CRUDcommentaire cc = new CRUDcommentaire();
         cc.Modifier_commentaire(c1);
-                    if (estUneChaineSansChiffres(texte.getText())){
-            labelvalide.setText(selectedCommentaire.getCommentaire() +" votre commentaire a été modifié à "+ texte.getText());
+                    if (estUneChaineSansChiffres(textM.getText())){
+            labelvalide.setText(selectedCommentaire.getCommentaire() +" votre commentaire a été modifié à "+ textM.getText());
         }
     }
     

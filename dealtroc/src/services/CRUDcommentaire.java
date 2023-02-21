@@ -6,14 +6,16 @@
 package services;
 
 import entities.commentaire;
+import static java.lang.System.in;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 import utils.MyConnection;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -24,11 +26,26 @@ public class CRUDcommentaire implements InterfaceCommentaire {
 Connection conn = MyConnection.getInstance().getConnection();
 
 public static boolean estUneChaineSansChiffres(String chaine) {
-    // Expression régulière pour vérifier si la chaîne ne contient que des lettres et/ou des espaces
-    String regex = "^[a-zA-Z\\s]+$";
+    int i=0;
+    int s=0;
+    boolean nbr;
 
+    ////une chaine ne contient pas des chiffre
+   // String regex = "^[a-zA-Z\\s]+$";
+   
+        for ( i = 0; i < chaine.length();i++) {
+            if (Character.isDigit(chaine.charAt(i))){
+                s++;
+        }
+    }System.out.println(s);
+    if (s<8){
+        nbr=true;
+    }else{
+        nbr=false;
+    }
     // Vérifier si la chaîne correspond à l'expression régulière
-    return chaine.matches(regex);
+  //return chaine.matches(regex);
+          return nbr;
 }
     @Override
     

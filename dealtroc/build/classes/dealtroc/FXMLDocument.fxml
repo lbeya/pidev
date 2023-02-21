@@ -7,16 +7,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="680.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dealtroc.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="745.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dealtroc.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField fx:id="texte" layoutX="122.0" layoutY="83.0" prefHeight="25.0" prefWidth="260.0" />
-      <Button layoutX="410.0" layoutY="56.0" mnemonicParsing="false" onAction="#Ajouter_commentaire" text="commenter" />
-      <Button layoutX="410.0" layoutY="83.0" mnemonicParsing="false" onAction="#Supprimer_commentaire" prefHeight="1.0" prefWidth="77.0" text="supprimer" />
-      <Button layoutX="14.0" layoutY="472.0" mnemonicParsing="false" onAction="#Consulter_commentaires" text="Affichier tous les commentaires" />
-      <Button fx:id="modif" layoutX="418.0" layoutY="116.0" mnemonicParsing="false" onAction="#Modifier_commentaire" text="Modifier" />
-      <Button layoutX="55.0" layoutY="334.0" mnemonicParsing="false" onAction="#view_commentaires" text="view commentaire" />
-      <TableView fx:id="tablecommentaire" layoutX="214.0" layoutY="195.0" prefHeight="303.0" prefWidth="408.0">
+      <TextField fx:id="texte" layoutX="119.0" layoutY="400.0" prefHeight="17.0" prefWidth="193.0" />
+      <Button layoutX="197.0" layoutY="353.0" mnemonicParsing="false" onAction="#Ajouter_commentaire" text="commenter" />
+      <Button layoutX="632.0" layoutY="188.0" mnemonicParsing="false" onAction="#Supprimer_commentaire" prefHeight="1.0" prefWidth="77.0" text="supprimer" />
+      <Button fx:id="modif" layoutX="487.0" layoutY="353.0" mnemonicParsing="false" onAction="#Modifier_commentaire" text="Modifier" />
+      <Button layoutX="36.0" layoutY="188.0" mnemonicParsing="false" onAction="#view_commentaires" text="view commentaire" />
+      <TableView fx:id="tablecommentaire" layoutX="215.0" layoutY="24.0" prefHeight="303.0" prefWidth="379.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="id" />
           <TableColumn fx:id="commentaire" prefWidth="75.0" text="commentaire" />
@@ -24,7 +23,8 @@
             <TableColumn fx:id="date" prefWidth="75.0" text="date" />
         </columns>
       </TableView>
-      <Label fx:id="labelerror" layoutX="47.0" layoutY="133.0" prefHeight="17.0" prefWidth="357.0" textFill="#f50808" />
-      <Label fx:id="labelvalide" layoutX="116.0" layoutY="120.0" prefHeight="17.0" prefWidth="272.0" textFill="#0ae811" />
+      <Label fx:id="labelerror" layoutX="126.0" layoutY="443.0" prefHeight="17.0" prefWidth="459.0" textFill="#f50808" />
+      <Label fx:id="labelvalide" layoutX="237.0" layoutY="443.0" prefHeight="17.0" prefWidth="272.0" textFill="#0ae811" />
+      <TextField fx:id="textM" layoutX="423.0" layoutY="400.0" prefHeight="25.0" prefWidth="172.0" />
     </children>
 </AnchorPane>
