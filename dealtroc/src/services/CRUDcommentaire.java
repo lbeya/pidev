@@ -29,9 +29,13 @@ public static boolean estUneChaineSansChiffres(String chaine) {
     int i=0;
     int s=0;
     boolean nbr;
+    boolean x=false;
 
     ////une chaine ne contient pas des chiffre
-   // String regex = "^[a-zA-Z\\s]+$";
+   //String regex = "^[a-zA-Z\\s]+$";
+   if (chaine.length()==0){
+       x=false;
+   }
    
         for ( i = 0; i < chaine.length();i++) {
             if (Character.isDigit(chaine.charAt(i))){
@@ -44,8 +48,8 @@ public static boolean estUneChaineSansChiffres(String chaine) {
         nbr=false;
     }
     // Vérifier si la chaîne correspond à l'expression régulière
-  //return chaine.matches(regex);
-          return nbr;
+//return chaine.matches(regex);
+          return nbr & x;
 }
     @Override
     

@@ -92,7 +92,7 @@ public class FXMLDocumentController implements Initializable {
             labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >=8");
        
         }else{
-            labelvalide.setText("valide format");
+            labelvalide.setText(texte.getText()+" a été ajouté");
             labelerror.setText("");
         }        
        // c=new commentaire();
@@ -188,7 +188,7 @@ selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
         CRUDcommentaire cc = new CRUDcommentaire();
         cc.Modifier_commentaire(c1);
                     if (estUneChaineSansChiffres(textM.getText())){
-            labelvalide.setText(selectedCommentaire.getCommentaire() +" votre commentaire a été modifié à "+ textM.getText());
+            labelvalide.setText(selectedCommentaire.getCommentaire() +"a été modifié à "+ textM.getText());
         }
     }
     
