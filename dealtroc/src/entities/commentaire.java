@@ -16,8 +16,25 @@ public class commentaire {
     private String commentaire;
     private int id_utilisateur;
     private LocalDateTime Date;
+    private String type;
 
     public commentaire() {
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String types) {
+        this.type = types;
+    }
+
+    public commentaire(int id, String commentaire, int id_utilisateur, LocalDateTime Date, String type) {
+        this.id = id;
+        this.commentaire = commentaire;
+        this.id_utilisateur = id_utilisateur;
+        this.Date = Date;
+        this.type = type;
     }
 
 
