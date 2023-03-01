@@ -5,6 +5,8 @@
  */
 package dealtroc;
 
+import entities.MailSender;
+import entities.SMSsender;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +28,16 @@ public class Dealtroc extends Application {
         
         stage.setScene(scene);
         stage.show();
+
+
+//   String to = "zhiri.medamine@gmail.com";
+//   String from ="lbeya99@gmail.com";
+//   String subject = "Deal Troc";
+//   String body = "Someone commented article";
+//   String passwd="ltusslpyminftuvk";
+//   MailSender.sendEmail(to,from,passwd,subject,body);
+
+
 
     }
 

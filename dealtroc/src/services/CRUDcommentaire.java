@@ -60,7 +60,7 @@ public static boolean estUneChaineSansChiffres(String chaine) {
         
         String datePublicationString = c.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         
-        String req = "Insert into commentaire values(0,'"+c.getCommentaire()+"','"+c.getId_utilisateur()+"','"+datePublicationString+"','"+c.getType()+"')";
+        String req = "Insert into commentaire values(0,'"+c.getCommentaire()+"','"+c.getId_utilisateur()+"','"+datePublicationString+"','"+c.getType()+"','"+c.getIdProduit()+"')";
                 System.out.println(req);
         ste.executeUpdate(req);
         System.out.println("Commentaire ajouté");
@@ -76,7 +76,7 @@ public static boolean estUneChaineSansChiffres(String chaine) {
             if (estUneChaineSansChiffres(c.getCommentaire())){
    try {
         Statement st = conn.createStatement();
-        String req = "UPDATE `commentaire` SET `commentaire` = '" + c.getCommentaire() + "', `id_utilisateur` = '" + c.getId_utilisateur() + "', `Date` = '" + c.getDate() + "', `type` = '" + c.getType() + "' WHERE `Commentaire`.`id` = " +c.getId();
+        String req = "UPDATE `commentaire` SET `commentaire` = '" + c.getCommentaire() + "', `id_utilisateur` = '" + c.getId_utilisateur() + "', `Date` = '" + c.getDate() + "', `type` = '" + c.getType() +"', `IdProduit` = '" + c.getIdProduit()+"' WHERE `Commentaire`.`id` = " +c.getId();
             System.out.println(req);
 
         st.executeUpdate(req);
@@ -106,7 +106,7 @@ public static boolean estUneChaineSansChiffres(String chaine) {
         ResultSet result = ste.executeQuery(req);
         
         while (result.next()) {
-            commentaire resultCommentaire = new commentaire(result.getInt("id"), result.getString("commentaire"), result.getInt("id_utilisateur"), result.getTimestamp("Date").toLocalDateTime(),result.getString("type"));
+            commentaire resultCommentaire = new commentaire(result.getInt("id"), result.getString("commentaire"), result.getInt("id_utilisateur"), result.getTimestamp("Date").toLocalDateTime(),result.getString("type"),result.getInt("IdProduit"));
             comms.add(resultCommentaire);
         }
         System.out.println(comms);

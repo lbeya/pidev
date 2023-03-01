@@ -17,6 +17,24 @@ public class commentaire {
     private int id_utilisateur;
     private LocalDateTime Date;
     private String type;
+    private int IdProduit;
+
+    public commentaire(int id, String commentaire, int id_utilisateur, LocalDateTime Date, String type, int IdProduit) {
+        this.id = id;
+        this.commentaire = commentaire;
+        this.id_utilisateur = id_utilisateur;
+        this.Date = Date;
+        this.type = type;
+        this.IdProduit = IdProduit;
+    }
+
+    public int getIdProduit() {
+        return IdProduit;
+    }
+
+    public void setIdProduit(int IdProduit) {
+        this.IdProduit = IdProduit;
+    }
 
     public commentaire() {
     }

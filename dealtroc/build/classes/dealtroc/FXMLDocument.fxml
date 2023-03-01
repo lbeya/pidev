@@ -7,21 +7,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="568.0" prefWidth="745.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dealtroc.FXMLDocumentController">
     <children>
       <TextField fx:id="texte" layoutX="119.0" layoutY="400.0" prefHeight="17.0" prefWidth="193.0" />
       <Button layoutX="197.0" layoutY="353.0" mnemonicParsing="false" onAction="#Ajouter_commentaire" text="commenter" />
-      <Button layoutX="632.0" layoutY="188.0" mnemonicParsing="false" onAction="#Supprimer_commentaire" prefHeight="1.0" prefWidth="77.0" text="supprimer" />
+      <Button layoutX="630.0" layoutY="188.0" mnemonicParsing="false" onAction="#Supprimer_commentaire" prefHeight="1.0" prefWidth="77.0" text="supprimer" />
       <Button fx:id="modif" layoutX="487.0" layoutY="353.0" mnemonicParsing="false" onAction="#Modifier_commentaire" text="Modifier" />
       <Button layoutX="36.0" layoutY="188.0" mnemonicParsing="false" onAction="#view_commentaires" text="view commentaire" />
-      <TableView fx:id="tablecommentaire" layoutX="161.0" layoutY="24.0" prefHeight="303.0" prefWidth="467.0">
+      <TableView fx:id="tablecommentaire" layoutX="161.0" layoutY="24.0" prefHeight="303.0" prefWidth="459.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="id" />
           <TableColumn fx:id="commentaire" prefWidth="75.0" text="commentaire" />
             <TableColumn fx:id="iduser" prefWidth="75.0" text="id-user" />
             <TableColumn fx:id="date" prefWidth="75.0" text="date" />
             <TableColumn fx:id="type" prefWidth="166.0" text="type commentaire" />
+            <TableColumn fx:id="idproduit" prefWidth="75.0" text="id-produit" />
         </columns>
       </TableView>
       <Label fx:id="labelerror" layoutX="126.0" layoutY="443.0" prefHeight="17.0" prefWidth="459.0" textFill="#f50808" />

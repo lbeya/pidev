@@ -41,9 +41,10 @@ import javax.mail.*;
  */
 public class FXMLDocumentController implements Initializable {
     commentaire c;
-    public int cid;
+    public String mail;
     public String cidS;
     Statement ste;
+    int x;
     Connection conn = MyConnection.getInstance().getConnection();
     
     commentaire selectedCommentaire;
@@ -74,6 +75,9 @@ public class FXMLDocumentController implements Initializable {
     
   
     @FXML
+    private TableColumn<commentaire,Integer> idproduit;
+        
+    @FXML
     private TableColumn<commentaire,LocalDateTime> date;
     
         @FXML
@@ -94,9 +98,24 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   
              
     } 
+    public void NbrDeCommParP(int idP) throws SQLException{
+        try{
+    Statement stmt = conn.createStatement();
+    String req = "SELECT COUNT(*)  FROM `commentaire` WHERE IdProduit = " + idP;
+    ResultSet rs = stmt.executeQuery(req);
+    System.out.println(req);
+// Récupération du résultat de la requête
+rs.next();
+int nombreDeLignes = rs.getInt(1);
+// Affichage du nombre de lignes
+System.out.println("Le nombre de lignes dans la table est : " + nombreDeLignes);
+        }catch(Exception ex){
+    System.out.println(ex);
+}
+}
+    
         @FXML
     void Ajouter_commentaire(ActionEvent event) throws SQLException, MessagingException {
 
@@ -115,12 +134,33 @@ pipeline.annotate(document);
 CoreMap sentence = document.get(SentencesAnnotation.class).get(0);
 String sentiment = sentence.get(SentimentClass.class);
 System.out.println(sentiment);
+
             labelvalide.setText(texte.getText()+" a été ajouté");
             labelerror.setText("");
                    // c=new commentaire();
-        c = new commentaire(0, texte.getText(),1, LocalDateTime.now(),sentiment);
+       c = new commentaire(0, texte.getText(),1, LocalDateTime.now(),sentiment,2);
+       //c = new commentaire(0, texte.getText(),1, LocalDateTime.now(),sentiment,1);
+
         CRUDcommentaire cc = new CRUDcommentaire();
         cc.Ajouter_commentaire(c);
+        
+        //nombre des commentaires par produit
+        x=c.getIdProduit();
+       System.out.println(x);
+     NbrDeCommParP(x);
+        try{
+    Statement stmt = conn.createStatement();
+//ResultSet rs = stmt.executeQuery("SELECT email FROM utilisateur WHERE Id_utilisateur  ='"+0+"'");
+//ResultSet rs = stmt.executeQuery("SELECT email FROM utilisateur WHERE Id_utilisateur  = (SELECT iduser FROM  produit WHERE IdProduit ='"+1+"')");
+ResultSet rs = stmt.executeQuery("SELECT email FROM utilisateur WHERE Id_utilisateur  = (SELECT iduser FROM  produit WHERE IdProduit ='"+2+"')");
+
+if (rs.next()) {
+    mail = rs.getString("email");
+    System.out.println(mail);
+}
+}catch(SQLException ex) {
+         System.out.println(ex);
+                 }
         }        
 
                
@@ -140,11 +180,15 @@ System.out.println(sentiment);
 //         System.out.println(ex);
 //                 }
 
-//    String to = "eya_labidi@hotmail.fr";
-//    String subject = "Test Email";
-//    String body = "This is a test email sent from Java.";
-//
-//    MailSender.sendMail(to, subject, body);
+   //String to = "gharnougui.ismail19@gmail.com";
+//   String to = mail;
+//   String from ="lbeya99@gmail.com";
+//   String subject = "Deal Troc";
+//   String body = "Someone commented your article";
+//   String passwd="ltusslpyminftuvk";
+//   MailSender.sendEmail(to,from,passwd,subject,body);
+   
+//  SMSsender.sendSMS();
 
     }
     ////supprimer en ecrivant le chaine de caractére
@@ -202,11 +246,12 @@ selectedCommentaire = tablecommentaire.getSelectionModel(). getSelectedItem();
             Properties props = new Properties();
 props.setProperty("annotators", "tokenize, ssplit, parse, sentiment");
 StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-Annotation document = new Annotation(texte.getText());
+Annotation document = new Annotation(textM.getText());
 pipeline.annotate(document);
 CoreMap sentence = document.get(SentencesAnnotation.class).get(0);
 String sentiment = sentence.get(SentimentClass.class);
 System.out.println(sentiment);
+
               if (estUneChaineSansChiffres(textM.getText())==false){
             labelerror.setText("invalide format: le commentaire ne doit pas contenir des nombres >8");
             labelvalide.setText("");
@@ -271,6 +316,8 @@ data.add(new commentaire(rs.getInt(1),rs.getNString(2),rs.getInt(3),rs.getTimest
     iduser.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("id_utilisateur") );
     date.setCellValueFactory(new PropertyValueFactory<commentaire,LocalDateTime>("Date") );
     type.setCellValueFactory(new PropertyValueFactory<commentaire,String>("type") );
+    idproduit.setCellValueFactory(new PropertyValueFactory<commentaire,Integer>("IdProduit") );
+
     tablecommentaire.setItems(data);
 
 }
